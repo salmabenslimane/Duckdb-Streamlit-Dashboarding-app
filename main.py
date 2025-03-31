@@ -39,3 +39,17 @@ if csv_file:
     st.subheader("Sample Query Result")
     st.write(result)
 
+
+    st.subheader("🌍 Moyenne des ventes par pays")
+    df_country = con.execute("""
+        SELECT 
+            Country_Code,
+            AVG(Quantity * Unit_Price) AS Avg_Sales
+        FROM orders
+        GROUP BY Country_Code
+    """).fetchdf()
+    st.bar_chart(df_country.set_index("Country_Code"))
+else:
+    st.info("📌 Veuillez importer un fichier CSV pour commencer.")
+
+
