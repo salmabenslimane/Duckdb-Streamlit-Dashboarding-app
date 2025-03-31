@@ -27,7 +27,7 @@ if csv_file:
     # This will create an in-memory database
     con = duckdb.connect()
 
-    #create view orders from the dataframe
+    #create views orders from the dataframe
     con.execute("""
                 CREATE OR REPLACE VIEW orders AS 
                 SELECT * FROM df
